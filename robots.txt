@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ujjwaljha.github.io/Ujjwaljha/sitemap.xml
+Sitemap: https://ujjwaljha.github.io/ujjwaljha/sitemap.xml

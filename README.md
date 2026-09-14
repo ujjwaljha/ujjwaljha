@@ -2,7 +2,9 @@
 
 Personal portfolio for a senior C# / .NET engineer with 13 years in production systems, now moving into applied AI and machine learning.
 
-Live path after GitHub Pages is enabled: [ujjwaljha.github.io/Ujjwaljha](https://ujjwaljha.github.io/Ujjwaljha/)
+Live site: [ujjwaljha.github.io/ujjwaljha](https://ujjwaljha.github.io/ujjwaljha/)
+
+GitHub Pages uses the repository name in the path, and that path is case-sensitive. The repo must be named `ujjwaljha` (all lowercase) for that URL to resolve. A case-only rename in **Settings → General → Repository name** often needs two steps: `Ujjwaljha` → `ujjwaljha-site` → `ujjwaljha`. Then re-check **Settings → Pages** is still **GitHub Actions**. The old mixed-case URL will not redirect.
 
 ## Run locally
 
