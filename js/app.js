@@ -105,7 +105,7 @@
   updateClock();
   window.setInterval(updateClock, 30000);
 
-  form?.addEventListener("submit", (event) => {
+  form?.addEventListener("submit", async (event) => {
     event.preventDefault();
     const data = new FormData(form);
     const name = String(data.get("name") || "").trim();
@@ -125,41 +125,14 @@
     }
 
     status.classList.remove("is-error");
-    const subject = `Portfolio note from ${name}`;
     const composed = `${message}\n\n— ${name}\n${email}`;
-    status.textContent = "Opening your email client…";
-    window.location.href = `mailto:ujjwal002@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(composed)}`;
-  });
-
-  const copyText = async (text) => {
-    if (navigator.clipboard?.writeText) {
-      await navigator.clipboard.writeText(text);
-      return;
-    }
-    const input = document.createElement("textarea");
-    input.value = text;
-    input.setAttribute("readonly", "");
-    input.style.position = "fixed";
-    input.style.left = "-9999px";
-    document.body.appendChild(input);
-    input.select();
-    const ok = document.execCommand("copy");
-    input.remove();
-    if (!ok) throw new Error("copy failed");
-  };
-
-  const copyEmail = document.querySelector("[data-copy-email]");
-  copyEmail?.addEventListener("click", async () => {
-    const email = copyEmail.getAttribute("data-email") || "ujjwal002@gmail.com";
+    status.textContent = "Opening LinkedIn. Paste your note there if you like.";
     try {
-      await copyText(email);
-      copyEmail.textContent = "Email copied";
+      await navigator.clipboard?.writeText(composed);
     } catch {
-      copyEmail.textContent = "Copy failed — use the address above";
+      /* clipboard is optional */
     }
-    window.setTimeout(() => {
-      copyEmail.textContent = "Copy email";
-    }, 2200);
+    window.open("https://www.linkedin.com/in/ujjvval", "_blank", "noopener,noreferrer");
   });
 
   const toTop = document.querySelector("[data-to-top]");
@@ -319,7 +292,7 @@
   const isHotTarget = (node) => {
     if (!(node instanceof Element)) return false;
     if (node.closest("input, textarea, select")) return false;
-    return Boolean(node.closest("a, button, .btn, [data-sample], [data-copy-email], [data-init-open], [data-welcome-skip], [data-welcome-play], .nav-toggle"));
+    return Boolean(node.closest("a, button, .btn, [data-sample], [data-init-open], [data-welcome-skip], [data-welcome-play], .nav-toggle"));
   };
 
   if (!reduceMotion) {
